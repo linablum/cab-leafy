@@ -41,7 +41,6 @@ function GetData() {
         ).catch(console.log("error"));
         const data = await res.json();
 
-        objectOutput = data;
         setObjectOutput(data);
         console.log(data);
       };
