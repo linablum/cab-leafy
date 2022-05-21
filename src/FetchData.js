@@ -7,12 +7,9 @@ function GetData() {
   useEffect(() => {
     const authorize = async () => {
       let formdata = new FormData();
-      formdata.append("grant_type", client_id);
-      formdata.append("client_id", client_secret);
-      formdata.append(
-        "client_secret",
-        "UXmTVmtDI7GIx3oqJFqnPVsm1Dt4vpdXwyW4vcoXWjMWcD8bNHc21ZiLnQg1CCJJdI81GuQnCTuXhV8h1FLfqg5ve18WZhVaT6JDyX0sBjqmBaTD9LWB6PVC9aVJoIyf"
-      );
+      formdata.append("grant_type", "client_credentials");
+      formdata.append("client_id", client_id);
+      formdata.append("client_secret", client_secret);
 
       const requestOptions = {
         method: "POST",
@@ -44,6 +41,7 @@ function GetData() {
         ).catch(console.log("error"));
         const data = await res.json();
 
+        objectOutput = data;
         setObjectOutput(data);
         console.log(data);
       };
