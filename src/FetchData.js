@@ -24,7 +24,7 @@ function GetData() {
       const data = await res.json();
       api_token = data.token;
       console.log("Successful Authorization. Token: " + api_token);
-
+      console.log(data);
       const getObject = async () => {
         let myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + api_token);
@@ -40,7 +40,7 @@ function GetData() {
           requestOptions
         ).catch(console.log("error"));
         const data = await res.json();
-        objectOutput = data;
+
         setObjectOutput(data);
         console.log(data);
       };
