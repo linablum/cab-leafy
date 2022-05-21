@@ -12,14 +12,13 @@ function GetData() {
       formdata.append("client_secret", client_secret);
 
       const requestOptions = {
-        mode: "no-cors",
         method: "POST",
         body: formdata,
         redirect: "follow",
       };
 
       const res = await fetch(
-        "https://open.plantbook.io/api/v1/token/",
+        "https://cab-cors-anywhere.herokuapp.com/https://open.plantbook.io/api/v1/token/",
         requestOptions
       ).catch(console.log("error"));
       const data = await res.json();
@@ -31,18 +30,17 @@ function GetData() {
         myHeaders.append("Authorization", "Bearer " + api_token);
 
         const requestOptions = {
-          mode: "no-cors",
           method: "GET",
           headers: myHeaders,
           redirect: "follow",
         };
 
         const res = await fetch(
-          "https://open.plantbook.io/api/v1/plant/detail/acanthus ilicifolius/",
+          "https://cab-cors-anywhere.herokuapp.com/https://open.plantbook.io/api/v1/plant/detail/acanthus ilicifolius/",
           requestOptions
         ).catch(console.log("error"));
         const data = await res.json();
-
+        objectOutput = data;
         setObjectOutput(data);
         console.log(data);
       };
