@@ -12,6 +12,7 @@ function GetData() {
       formdata.append("client_secret", client_secret);
 
       const requestOptions = {
+        mode: "no-cors",
         method: "POST",
         body: formdata,
         redirect: "follow",
@@ -30,6 +31,7 @@ function GetData() {
         myHeaders.append("Authorization", "Bearer " + api_token);
 
         const requestOptions = {
+          mode: "no-cors",
           method: "GET",
           headers: myHeaders,
           redirect: "follow",
