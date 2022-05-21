@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { client_id, client_secret } from "./Config.js";
+import configData from "./Config.json";
 
 function GetData() {
   const [objectOutput, setObjectOutput] = useState();
@@ -8,8 +8,8 @@ function GetData() {
     const authorize = async () => {
       let formdata = new FormData();
       formdata.append("grant_type", "client_credentials");
-      formdata.append("client_id", client_id);
-      formdata.append("client_secret", client_secret);
+      formdata.append("client_id", configData.client_id);
+      formdata.append("client_secret", configData.client_secret);
 
       const requestOptions = {
         method: "POST",
@@ -22,9 +22,9 @@ function GetData() {
         requestOptions
       ).catch(console.log("error"));
       const data = await res.json();
-      api_token = data.token;
+      api_token = data.access_token;
       console.log("Successful Authorization. Token: " + api_token);
-      console.log(data);
+
       const getObject = async () => {
         let myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + api_token);
