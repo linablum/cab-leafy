@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import configData from "./Config.json";
 
+const cors_url = "https://cab-cors-anywhere.herokuapp.com/";
+
 function GetData() {
-  const [objectOutput, setObjectOutput] = useState();
+  const [output, setOutput] = useState();
   let api_token = "";
   useEffect(() => {
     const authorize = async () => {
@@ -18,7 +20,7 @@ function GetData() {
       };
 
       const res = await fetch(
-        "https://cab-cors-anywhere.herokuapp.com/https://open.plantbook.io/api/v1/token/",
+        cors_url + "https://open.plantbook.io/api/v1/token/",
         requestOptions
       ).catch(console.log("error"));
       const data = await res.json();
@@ -36,19 +38,32 @@ function GetData() {
         };
 
         const res = await fetch(
-          "https://cab-cors-anywhere.herokuapp.com/https://open.plantbook.io/api/v1/plant/detail/acanthus ilicifolius/",
+          cors_url +
+            "https://open.plantbook.io/api/v1/plant/search?alias=acer&limit=10&offset=20",
           requestOptions
         ).catch(console.log("error"));
         const data = await res.json();
 
-        setObjectOutput(data);
-        console.log(data);
+        setOutput(data.results);
+        console.log(data.results);
       };
       getObject();
     };
 
     authorize();
   }, []);
+
+  return (
+    <div>
+      {output ? (
+        output.map((plant, i) => {
+          return <div key={i}>{plant.display_pid}</div>;
+        })
+      ) : (
+        <p>Error</p>
+      )}
+    </div>
+  );
 }
 
 export default GetData;
