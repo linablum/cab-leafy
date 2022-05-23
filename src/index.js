@@ -6,7 +6,7 @@ import App from "./App";
 import Header from "./views/Header";
 import Footer from "./views/Footer";
 import Details from "./views/Details";
-import GetData from "./GetData";
+import GetData from "./components/GetData";
 import Login from "./views/Login";
 import Chat from "./views/Chat";
 

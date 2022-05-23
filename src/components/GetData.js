@@ -6,6 +6,8 @@ const cors_url = "https://cab-cors-anywhere.herokuapp.com/";
 
 function GetData() {
   const [output, setOutput] = useState();
+  const [output2, setOutput2] = useState();
+
   let api_token = "";
   useEffect(() => {
     const authorize = async () => {
@@ -46,15 +48,29 @@ function GetData() {
         const data = await res.json();
         setOutput(data.results);
         console.log(data.results);
+
+        const res2 = await fetch(
+          cors_url +
+            "https://open.plantbook.io//api/v1/plant/detail/acer%20pseudoplatanus/",
+          requestOptions
+        ).catch(console.log("error"));
+        const data2 = await res2.json();
+        setOutput2(data2);
+        console.log("Details", data2.image_url);
       };
       getObject();
     };
 
     authorize();
-    console.log("Output", output);
   }, []);
-
-  return <List plants={output} />;
+  console.log("Output", output);
+  console.log("Output2", output2);
+  return (
+    <>
+      <img src={output2.image_url} />
+      <List plants={output} />;
+    </>
+  );
 }
 
 export default GetData;
