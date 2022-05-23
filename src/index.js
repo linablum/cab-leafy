@@ -9,20 +9,24 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-import List from "./views/List.js";
-import Login from "./views/Login.js";
-import Chat from "./views/Chat.js";
+import Header from "./views/Header";
+import Footer from "./views/Footer";
+import List from "./views/List";
+import Login from "./views/Login";
+import Chat from "./views/Chat";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<List />} />
         <Route path="/login" element={<Login />} />
         <Route path="/chat" element={<Chat />} />
       </Routes>
       <App />
+      <Footer />
     </BrowserRouter>
   </React.StrictMode>
 );

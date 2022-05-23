@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
-const Chat = () => {};
+const Chat = () => {
+  return <div>CHAT</div>;
+};
 
 export default Chat;
