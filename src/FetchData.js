@@ -39,7 +39,7 @@ function GetData() {
 
         const res = await fetch(
           cors_url +
-            "https://open.plantbook.io/api/v1/plant/search?alias=acer&limit=10&offset=20",
+            "https://open.plantbook.io/api/v1/plant/search?alias=ac&limit=100&offset=0",
           requestOptions
         ).catch(console.log("error"));
         const data = await res.json();
@@ -60,7 +60,7 @@ function GetData() {
           return <div key={i}>{plant.display_pid}</div>;
         })
       ) : (
-        <p>Error</p>
+        <p>Loading...</p>
       )}
     </div>
   );
