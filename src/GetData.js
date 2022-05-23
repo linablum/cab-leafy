@@ -40,11 +40,10 @@ function GetData() {
 
         const res = await fetch(
           cors_url +
-            "https://open.plantbook.io/api/v1/plant/search?alias=ac&limit=100&offset=0",
+            "https://open.plantbook.io/api/v1/plant/search?alias=ac&limit=20&offset=0",
           requestOptions
         ).catch(console.log("error"));
         const data = await res.json();
-
         setOutput(data.results);
         console.log(data.results);
       };
@@ -52,9 +51,34 @@ function GetData() {
     };
 
     authorize();
+    console.log("Output", output);
   }, []);
 
   return <List plants={output} />;
 }
 
 export default GetData;
+
+/* 
+        const allArray = [];
+        const resDetails = await Promise.all(
+          urls.map((output.alias) =>
+          fetch(cors_url +
+            "https://open.plantbook.io//api/v1/plant/detail/${output.alias}",
+          requestOptions)
+        ).catch(console.log("error"));
+        const details = await res.json();
+        console.log(details); */
+
+/*       async function fetchCharacters() {
+  try {
+    const allArray = [];
+    const data = await Promise.all(
+      urls.map((url) =>
+        fetch(url)
+          .then((res) => res.json())
+          .then((res) => {
+            allArray.push(...res.data.results);
+          })
+      )
+    ); */
