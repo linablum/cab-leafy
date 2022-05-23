@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import configData from "./Config.json";
-import List from "./views/List";
+import configData from "../Config.json";
+import List from "../views/List";
 
 const cors_url = "https://cab-cors-anywhere.herokuapp.com/";
 

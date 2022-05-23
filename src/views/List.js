@@ -13,7 +13,7 @@ const List = (props) => {
           return (
             <Card key={i} sx={{ maxWidth: 345 }}>
               <CardActionArea>
-                <CardMedia component="img" height="140" image="" alt="" />
+                <CardMedia component="img" height="40" image="" alt="" />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {plant.display_pid}
