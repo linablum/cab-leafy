@@ -11,20 +11,15 @@ const List = (props) => {
       {props.plants ? (
         props.plants.map((plant, i) => {
           return (
-            <Card sx={{ maxWidth: 345 }}>
+            <Card key={i} sx={{ maxWidth: 345 }}>
               <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image="/static/images/cards/contemplative-reptile.jpg"
-                  alt=""
-                />
+                <CardMedia component="img" height="140" image="" alt="" />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div" key={i}>
+                  <Typography gutterBottom variant="h5" component="div">
                     {plant.display_pid}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Plants plant plants
+                    Some text
                   </Typography>
                 </CardContent>
               </CardActionArea>
