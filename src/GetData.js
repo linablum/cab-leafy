@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import configData from "./Config.json";
+import List from "./views/List";
 
 const cors_url = "https://cab-cors-anywhere.herokuapp.com/";
 
@@ -53,17 +54,7 @@ function GetData() {
     authorize();
   }, []);
 
-  return (
-    <div>
-      {output ? (
-        output.map((plant, i) => {
-          return <div key={i}>{plant.display_pid}</div>;
-        })
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
+  return <List plants={output} />;
 }
 
 export default GetData;
