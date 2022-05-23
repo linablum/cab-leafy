@@ -5,7 +5,7 @@ import "./index.css";
 import App from "./App";
 import Header from "./views/Header";
 import Footer from "./views/Footer";
-//import List from "./views/List";
+import Details from "./views/Details";
 import GetData from "./GetData";
 import Login from "./views/Login";
 import Chat from "./views/Chat";
@@ -17,6 +17,7 @@ root.render(
       <Header />
       <Routes>
         <Route path="/" element={<GetData />} />
+        <Route path="/details" element={<Details />} />
         <Route path="/login" element={<Login />} />
         <Route path="/chat" element={<Chat />} />
       </Routes>

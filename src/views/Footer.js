@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -12,24 +13,47 @@ export default function Footer() {
   const [value, setValue] = React.useState(0);
 
   return (
-    <Box sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }} elevation={3}>
+    <Box
+      sx={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+      }}
+      elevation={3}
+    >
       <BottomNavigation
+        sx={{ bgcolor: "lightgreen" }}
         showLabels
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="Home" icon={<HomeOutlinedIcon />} />
         <BottomNavigationAction
+          component={Link}
+          to="/"
+          label="Home"
+          icon={<HomeOutlinedIcon />}
+        />
+        <BottomNavigationAction
+          component={Link}
+          to="/details"
           label="Browse Plants"
           icon={<SpaOutlinedIcon />}
         />
         <BottomNavigationAction
+          component={Link}
+          to="/login"
           label="Login"
           icon={<PersonOutlineOutlinedIcon />}
         />
-        <BottomNavigationAction label="Chat" icon={<ChatOutlinedIcon />} />
+        <BottomNavigationAction
+          component={Link}
+          to="/chat"
+          label="Chat"
+          icon={<ChatOutlinedIcon />}
+        />
       </BottomNavigation>
     </Box>
   );
