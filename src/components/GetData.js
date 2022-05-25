@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import configData from "../Config.json";
+import configData from "../utils/config.json";
 import List from "../views/List";
 
 const cors_url = "https://cab-cors-anywhere.herokuapp.com/";
@@ -7,10 +7,13 @@ const cors_url = "https://cab-cors-anywhere.herokuapp.com/";
 function GetData() {
   const [output, setOutput] = useState();
   const [output2, setOutput2] = useState();
+  const [loading, setLoading] = useState();
+  const [page, setPage] = useState(1);
 
   let api_token = "";
   useEffect(() => {
     const authorize = async () => {
+      setLoading(true);
       let formdata = new FormData();
       formdata.append("grant_type", "client_credentials");
       formdata.append("client_id", configData.client_id);
@@ -42,7 +45,7 @@ function GetData() {
 
         const res = await fetch(
           cors_url +
-            "https://open.plantbook.io/api/v1/plant/search?alias=ac&limit=20&offset=0",
+            "https://open.plantbook.io/api/v1/plant/search?alias=ac&limit=100&offset=0",
           requestOptions
         ).catch(console.log("error"));
         const data = await res.json();
@@ -54,6 +57,7 @@ function GetData() {
             "https://open.plantbook.io//api/v1/plant/detail/acer%20pseudoplatanus/",
           requestOptions
         ).catch(console.log("error"));
+        setLoading(false);
         const data2 = await res2.json();
         setOutput2(data2);
         console.log("Details", data2.image_url);
@@ -67,8 +71,8 @@ function GetData() {
   console.log("Output2", output2);
   return (
     <>
-      <img src={output2.image_url} />
-      <List plants={output} />;
+      <h1>Leafy</h1>
+      {loading ? <p>Loading...</p> : <List plants={output} page={page} />}
     </>
   );
 }
