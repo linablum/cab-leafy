@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import configData from "../utils/config.json";
+import { plants_per_page } from "../utils/constants";
 import List from "../views/List";
+import Pagination from "./Pagination";
 
 const cors_url = "https://cab-cors-anywhere.herokuapp.com/";
 
@@ -9,6 +11,7 @@ function GetData() {
   const [output2, setOutput2] = useState();
   const [loading, setLoading] = useState();
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   let api_token = "";
   useEffect(() => {
@@ -50,7 +53,7 @@ function GetData() {
         ).catch(console.log("error"));
         const data = await res.json();
         setOutput(data.results);
-        console.log(data.results);
+        setTotalPages(Math.ceil(data.results.length / plants_per_page));
 
         const res2 = await fetch(
           cors_url +
@@ -67,12 +70,27 @@ function GetData() {
 
     authorize();
   }, []);
+  const handleClick = (num) => {
+    setPage(num);
+  };
   console.log("Output", output);
   console.log("Output2", output2);
+  console.log("TotalPages:", totalPages);
   return (
     <>
       <h1>Leafy</h1>
-      {loading ? <p>Loading...</p> : <List plants={output} page={page} />}
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <List plants={output} page={page} />
+          <Pagination totalPages={totalPages} handleClick={handleClick} />
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+        </>
+      )}
     </>
   );
 }
