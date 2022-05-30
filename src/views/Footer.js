@@ -1,5 +1,6 @@
-import * as React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -10,7 +11,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 
 export default function Footer() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(null);
 
   return (
     <Box
@@ -58,3 +59,19 @@ export default function Footer() {
     </Box>
   );
 }
+
+/*    {
+          user ? (
+            <BottomNavigationAction
+              onClick={logout}
+              label="Logout"
+              icon={<PersonOutlineOutlinedIcon />}
+            />
+          ) : (
+            <BottomNavigationAction
+              onClick={login}
+              label="Login"
+              icon={<PersonOutlineOutlinedIcon />}
+            />
+          );
+        } */
