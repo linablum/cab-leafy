@@ -14,17 +14,19 @@ import { AuthContextProvider } from "./context/authContext";
 const App = () => {
   return (
     <div className="App">
-      <PlantsContextProvider>
-        <Header />
-        <Routes>
-          <Route path="/" element={<GetData />} />
-          <Route path="/details" element={<Details />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/chat" element={<Chat />} />
-        </Routes>
-        <Footer />
-      </PlantsContextProvider>
+      <AuthContextProvider>
+        <PlantsContextProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<GetData />} />
+            <Route path="/details" element={<Details />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/chat" element={<Chat />} />
+          </Routes>
+          <Footer />
+        </PlantsContextProvider>
+      </AuthContextProvider>
     </div>
   );
 };
