@@ -1,18 +1,17 @@
-import { useEffect, useContext } from "react";
-import List from "../views/List";
-import Pagination from "./Pagination";
-import { PlantsContext } from "../context/PlantsContext";
+import { useState, createContext } from "react";
+import configData from "../utils/config.json";
+import { plants_per_page, cors_url } from "../utils/constants";
 
-function GetData() {
-  const { output, output2, loading, page, totalPages, setPage, fetchData } =
-    useContext(PlantsContext);
-  /*   const [output, setOutput] = useState();
+export const PlantsContext = createContext();
+
+export const PlantsContextProvider = (props) => {
+  const [output, setOutput] = useState();
   const [output2, setOutput2] = useState();
   const [loading, setLoading] = useState();
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  /* let api_token = "";
+  let api_token = "";
 
   const fetchData = () => {
     const authorize = async () => {
@@ -68,33 +67,37 @@ function GetData() {
     };
 
     authorize();
-  }; */
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-  const handleClick = (num) => {
-    setPage(num);
   };
-  console.log("Output", output);
-  console.log("Output2", output2);
-  return (
-    <>
-      <h1>Leafy</h1>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <List plants={output} page={page} />
-          <Pagination totalPages={totalPages} handleClick={handleClick} />
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-        </>
-      )}
-    </>
-  );
-}
 
-export default GetData;
+  return (
+    <PlantsContext.Provider
+      value={{ output, output2, loading, page, totalPages, setPage, fetchData }}
+    >
+      {props.children}
+    </PlantsContext.Provider>
+  );
+};
+
+/* 
+        const allArray = [];
+        const resDetails = await Promise.all(
+          urls.map((output.alias) =>
+          fetch(cors_url +
+            "https://open.plantbook.io//api/v1/plant/detail/${output.alias}",
+          requestOptions)
+        ).catch(console.log("error"));
+        const details = await res.json();
+        console.log(details); */
+
+/*       async function fetchCharacters() {
+  try {
+    const allArray = [];
+    const data = await Promise.all(
+      urls.map((url) =>
+        fetch(url)
+          .then((res) => res.json())
+          .then((res) => {
+            allArray.push(...res.data.results);
+          })
+      )
+    ); */

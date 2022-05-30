@@ -8,8 +8,6 @@ import { plants_per_page } from "../utils/constants";
 
 const List = ({ plants, page }) => {
   const startIndex = (page - 1) * plants_per_page;
-  // const selectedPlants = plants.slice(startIndex, startIndex + plants_per_page);
-  console.log("Plants:", plants);
   return (
     <div>
       {plants ? (
