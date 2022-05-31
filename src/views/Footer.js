@@ -13,60 +13,60 @@ import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 export default function Footer() {
   const [value, setValue] = useState(null);
   const { user, setUser } = useContext(AuthContext);
-  const login = () => {
-    console.log(user);
-    setUser({ userName: "Lina" });
-  };
-  const logout = () => {
-    setUser(null);
-  };
+
   return (
-    <div>
-      <button onClick={login}>Login</button>
-      <Box
-        sx={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
+    <Box
+      sx={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+      }}
+      elevation={3}
+    >
+      <BottomNavigation
+        sx={{ bgcolor: "lightgreen" }}
+        showLabels
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
         }}
-        elevation={3}
       >
-        <BottomNavigation
-          sx={{ bgcolor: "lightgreen" }}
-          showLabels
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-        >
+        <BottomNavigationAction
+          component={Link}
+          to="/"
+          label="Home"
+          icon={<HomeOutlinedIcon />}
+        />
+        <BottomNavigationAction
+          component={Link}
+          to="/details"
+          label="Browse Plants"
+          icon={<SpaOutlinedIcon />}
+        />
+        {user ? (
           <BottomNavigationAction
             component={Link}
-            to="/"
-            label="Home"
-            icon={<HomeOutlinedIcon />}
+            to="/logout"
+            label="Logout"
+            icon={<PersonOutlineOutlinedIcon />}
           />
-          <BottomNavigationAction
-            component={Link}
-            to="/details"
-            label="Browse Plants"
-            icon={<SpaOutlinedIcon />}
-          />
+        ) : (
           <BottomNavigationAction
             component={Link}
             to="/login"
             label="Login"
             icon={<PersonOutlineOutlinedIcon />}
           />
-          <BottomNavigationAction
-            component={Link}
-            to="/chat"
-            label="Chat"
-            icon={<ChatOutlinedIcon />}
-          />
-        </BottomNavigation>
-      </Box>
-    </div>
+        )}
+        <BottomNavigationAction
+          component={Link}
+          to="/chat"
+          label="Chat"
+          icon={<ChatOutlinedIcon />}
+        />
+      </BottomNavigation>
+    </Box>
   );
 }
 
