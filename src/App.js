@@ -10,6 +10,7 @@ import Logout from "./views/Logout";
 import Chat from "./views/Chat";
 import { PlantsContextProvider } from "./context/plantsContext";
 import { AuthContextProvider } from "./context/authContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -22,7 +23,14 @@ const App = () => {
             <Route path="/details" element={<Details />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
-            <Route path="/chat" element={<Chat />} />
+            <Route
+              path="/chat"
+              element={
+                <ProtectedRoute>
+                  <Chat />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
           <Footer />
         </PlantsContextProvider>
