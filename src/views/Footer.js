@@ -12,7 +12,7 @@ import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 
 export default function Footer() {
   const [value, setValue] = useState(null);
-  const { user, setUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <Box
