@@ -11,8 +11,10 @@ import Chat from "./views/Chat";
 import { PlantsContextProvider } from "./context/plantsContext";
 import { AuthContextProvider } from "./context/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { app } from "./utils/config";
 
 const App = () => {
+  console.log(app);
   return (
     <div className="App">
       <AuthContextProvider>
