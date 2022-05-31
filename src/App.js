@@ -8,6 +8,7 @@ import GetData from "./components/GetData";
 import Login from "./views/Login";
 import Logout from "./views/Logout";
 import Chat from "./views/Chat";
+import Register from "./views/Register";
 import { PlantsContextProvider } from "./context/plantsContext";
 import { AuthContextProvider } from "./context/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/details" element={<Details />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/register" element={<Register />} />
             <Route
               path="/chat"
               element={
