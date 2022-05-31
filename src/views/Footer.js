@@ -59,12 +59,16 @@ export default function Footer() {
             icon={<PersonOutlineOutlinedIcon />}
           />
         )}
-        <BottomNavigationAction
-          component={Link}
-          to="/chat"
-          label="Chat"
-          icon={<ChatOutlinedIcon />}
-        />
+        {user ? (
+          <BottomNavigationAction
+            component={Link}
+            to="/chat"
+            label="Chat"
+            icon={<ChatOutlinedIcon />}
+          />
+        ) : (
+          <p></p>
+        )}
       </BottomNavigation>
     </Box>
   );
