@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -10,7 +10,7 @@ const firebaseConfig = {
   messagingSenderId: process.env.EACT_APP_MESSAGINGSENDERID,
   appId: process.env.REACT_APP_APPID,
 };
-console.log("config", process.env.REACT_APP_APIKEY);
+
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);

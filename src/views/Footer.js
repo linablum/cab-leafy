@@ -73,19 +73,3 @@ export default function Footer() {
     </Box>
   );
 }
-
-/*    {
-          user ? (
-            <BottomNavigationAction
-              onClick={logout}
-              label="Logout"
-              icon={<PersonOutlineOutlinedIcon />}
-            />
-          ) : (
-            <BottomNavigationAction
-              onClick={login}
-              label="Login"
-              icon={<PersonOutlineOutlinedIcon />}
-            />
-          );
-        } */

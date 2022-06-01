@@ -9,6 +9,7 @@ import Login from "./views/Login";
 import Logout from "./views/Logout";
 import Chat from "./views/Chat";
 import Register from "./views/Register";
+import Home from "./views/Home";
 import { PlantsContextProvider } from "./context/plantsContext";
 import { AuthContextProvider } from "./context/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -20,8 +21,8 @@ const App = () => {
         <PlantsContextProvider>
           <Header />
           <Routes>
-            <Route path="/" element={<GetData />} />
-            <Route path="/details" element={<Details />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/details" element={<GetData />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
