@@ -41,6 +41,7 @@ export const AuthContextProvider = (props) => {
         const user = userCredential.user;
         console.log("user", user);
         setUser(user);
+        redirectTo("/");
       })
       .catch((error) => {
         console.log(error);
