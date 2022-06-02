@@ -6,25 +6,12 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Button, CardActionArea, CardActions, IconButton } from "@mui/material";
 import { plants_per_page } from "../utils/constants";
-import { collection, addDoc, updateDoc } from "firebase/firestore";
-import { db } from "../utils/config";
 import { AuthContext } from "../context/authContext";
 
 const List = ({ plants, page }) => {
   const startIndex = (page - 1) * plants_per_page;
   const { user } = useContext(AuthContext);
-  /* 
-  const likeFunction = async () => {
-    try {
-      const docRef = await addDoc(collection(db, "users"), {
-        user: user.email,
-        likes: [],
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  }; */
+
   return (
     <div>
       {plants ? (
