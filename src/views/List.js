@@ -7,10 +7,16 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Button, CardActionArea, CardActions, IconButton } from "@mui/material";
 import { plants_per_page } from "../utils/constants";
 import { AuthContext } from "../context/authContext";
+import { UserProfileContext } from "../context/favouritesContext";
 
 const List = ({ plants, page }) => {
   const startIndex = (page - 1) * plants_per_page;
   const { user } = useContext(AuthContext);
+  const { addFavPlant } = useContext(UserProfileContext);
+
+  const handleAddFavPlant = (plant) => {
+    addFavPlant(plant);
+  };
 
   return (
     <div>
@@ -27,7 +33,16 @@ const List = ({ plants, page }) => {
                       {plant.display_pid}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      <IconButton>
+                      <IconButton
+                        className="btnFav"
+                        onClick={
+                          user
+                            ? () => {
+                                handleAddFavPlant(plant);
+                              }
+                            : () => alert("Please Login first!")
+                        }
+                      >
                         <FavoriteIcon />
                       </IconButton>
                     </Typography>

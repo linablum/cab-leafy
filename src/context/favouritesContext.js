@@ -34,13 +34,15 @@ export const UserProfileContextProvider = ({ children }) => {
       console.log("Current data: ", doc.data());
     });
   };
-};
 
-return (
-  <UserProfileContext.Provider value={{ favorites, getFavorites, addFavPlant }}>
-    {children}
-  </UserProfileContext.Provider>
-);
+  return (
+    <UserProfileContext.Provider
+      value={{ favorites, getFavorites, addFavPlant }}
+    >
+      {children}
+    </UserProfileContext.Provider>
+  );
+};
 
 /*  db.collection("userProfile").get().then((querySnapshot) => {
             const favoritesArray = []

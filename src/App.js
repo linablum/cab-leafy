@@ -12,31 +12,34 @@ import Register from "./views/Register";
 import Home from "./views/Home";
 import { PlantsContextProvider } from "./context/plantsContext";
 import { AuthContextProvider } from "./context/authContext";
+import { UserProfileContextProvider } from "./context/favouritesContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
     <div className="App">
       <AuthContextProvider>
-        <PlantsContextProvider>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/details" element={<GetData />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="/register" element={<Register />} />
-            <Route
-              path="/chat"
-              element={
-                <ProtectedRoute>
-                  <Chat />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-          <Footer />
-        </PlantsContextProvider>
+        <UserProfileContextProvider>
+          <PlantsContextProvider>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/details" element={<GetData />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/register" element={<Register />} />
+              <Route
+                path="/chat"
+                element={
+                  <ProtectedRoute>
+                    <Chat />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+            <Footer />
+          </PlantsContextProvider>
+        </UserProfileContextProvider>
       </AuthContextProvider>
     </div>
   );
