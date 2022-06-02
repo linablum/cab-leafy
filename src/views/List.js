@@ -3,7 +3,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Button, CardActionArea, CardActions, IconButton } from "@mui/material";
 import { plants_per_page } from "../utils/constants";
 import { collection, addDoc, updateDoc } from "firebase/firestore";
 import { db } from "../utils/config";
@@ -12,7 +13,7 @@ import { AuthContext } from "../context/authContext";
 const List = ({ plants, page }) => {
   const startIndex = (page - 1) * plants_per_page;
   const { user } = useContext(AuthContext);
-
+  /* 
   const likeFunction = async () => {
     try {
       const docRef = await addDoc(collection(db, "users"), {
@@ -23,7 +24,7 @@ const List = ({ plants, page }) => {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-  };
+  }; */
   return (
     <div>
       {plants ? (
@@ -39,7 +40,9 @@ const List = ({ plants, page }) => {
                       {plant.display_pid}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      <button>Like</button>
+                      <IconButton>
+                        <FavoriteIcon />
+                      </IconButton>
                     </Typography>
                   </CardContent>
                 </CardActionArea>

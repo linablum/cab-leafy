@@ -4,17 +4,31 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../utils/config";
+import { db } from "../utils/config";
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState(null);
   const redirectTo = useNavigate();
-  console.log(auth);
+
+  const addDocFavorites = async (user) => {
+    try {
+      await setDoc(doc(db, "userProfile", user.uid), {
+        email: user.email,
+        uid: user.uid,
+        favPlants: [],
+      });
+    } catch (error) {
+      console.error("Error writing document: ", error);
+    }
+  };
+
   const register = async (email, password) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -25,12 +39,12 @@ export const AuthContextProvider = (props) => {
       console.log("userCredential", userCredential);
       setUser(userCredential.user);
       redirectTo("/");
+      addDocFavorites(userCredential.user);
     } catch (error) {
       console.log(error);
       setUser(null);
       const errorCode = error.code;
       const errorMessage = error.message;
-      // ..
     }
   };
 
@@ -54,11 +68,9 @@ export const AuthContextProvider = (props) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
         setUser(user);
       } else {
-        // User is signed out
         setUser(null);
       }
     });
