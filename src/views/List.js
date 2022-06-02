@@ -12,10 +12,14 @@ import { UserProfileContext } from "../context/favouritesContext";
 const List = ({ plants, page }) => {
   const startIndex = (page - 1) * plants_per_page;
   const { user } = useContext(AuthContext);
-  const { addFavPlant } = useContext(UserProfileContext);
+  const { addFavPlant, deleteFavPlant } = useContext(UserProfileContext);
 
   const handleAddFavPlant = (plant) => {
     addFavPlant(plant);
+  };
+
+  const handleDeleteFavPlant = (plant) => {
+    deleteFavPlant(plant);
   };
 
   return (
@@ -43,7 +47,7 @@ const List = ({ plants, page }) => {
                             : () => alert("Please Login first!")
                         }
                       >
-                        <FavoriteIcon />
+                        <FavoriteIcon sx={{ color: "lightgreen" }} />
                       </IconButton>
                     </Typography>
                   </CardContent>

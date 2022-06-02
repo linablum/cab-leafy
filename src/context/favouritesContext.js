@@ -29,27 +29,31 @@ export const UserProfileContextProvider = ({ children }) => {
       console.error("Error writing document: ", error);
     }
   };
+
   const getFavorites = () => {
     const favs = onSnapshot(doc(db, "userProfile", user.uid), (doc) => {
       console.log("Current data: ", doc.data());
     });
   };
 
+  const deleteFavPlant = async (plant) => {
+    try {
+      const userRef = doc(db, "userProfile", user.uid);
+      await updateDoc(userRef, {
+        favPlants: arrayRemove(plant),
+      });
+      console.log("Plant removed from Favorites!");
+      getFavorites();
+    } catch (error) {
+      console.error("Error writing document: ", error);
+    }
+  };
+
   return (
     <UserProfileContext.Provider
-      value={{ favorites, getFavorites, addFavPlant }}
+      value={{ favorites, getFavorites, addFavPlant, deleteFavPlant }}
     >
       {children}
     </UserProfileContext.Provider>
   );
 };
-
-/*  db.collection("userProfile").get().then((querySnapshot) => {
-            const favoritesArray = []
-            querySnapshot.forEach((doc) => {
-                favoritesArray.push(doc)
-            });
-            setFavorites(favoritesArray)
-            console.log("Favorites", favorites) 
-        });
-         */
