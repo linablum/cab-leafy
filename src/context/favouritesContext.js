@@ -14,7 +14,6 @@ export const UserProfileContext = createContext();
 export const UserProfileContextProvider = ({ children }) => {
   const { user } = useContext(AuthContext);
   const [favorites, setFavorites] = useState([]);
-  console.log(user);
 
   const addFavPlant = async (plant) => {
     try {

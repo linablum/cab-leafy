@@ -48,21 +48,6 @@ export default function Footer() {
         {user ? (
           <BottomNavigationAction
             component={Link}
-            to="/logout"
-            label="Logout"
-            icon={<PersonOutlineOutlinedIcon />}
-          />
-        ) : (
-          <BottomNavigationAction
-            component={Link}
-            to="/login"
-            label="Login"
-            icon={<PersonOutlineOutlinedIcon />}
-          />
-        )}
-        {user ? (
-          <BottomNavigationAction
-            component={Link}
             to="/chat"
             label="Chat"
             icon={<ChatOutlinedIcon />}
@@ -79,6 +64,21 @@ export default function Footer() {
           />
         ) : (
           <p></p>
+        )}
+        {user ? (
+          <BottomNavigationAction
+            component={Link}
+            to="/logout"
+            label="Logout"
+            icon={<PersonOutlineOutlinedIcon />}
+          />
+        ) : (
+          <BottomNavigationAction
+            component={Link}
+            to="/login"
+            label="Login"
+            icon={<PersonOutlineOutlinedIcon />}
+          />
         )}
       </BottomNavigation>
     </Box>

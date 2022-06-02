@@ -43,8 +43,8 @@ export const AuthContextProvider = (props) => {
     } catch (error) {
       console.log(error);
       setUser(null);
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
     }
   };
 
@@ -60,8 +60,8 @@ export const AuthContextProvider = (props) => {
       .catch((error) => {
         console.log(error);
         setUser(null);
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
       });
   };
   const checkIfUserIsLoggedIn = () => {
