@@ -9,6 +9,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import SpaOutlinedIcon from "@mui/icons-material/SpaOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 
 export default function Footer() {
   const [value, setValue] = useState(null);
@@ -65,6 +66,16 @@ export default function Footer() {
             to="/chat"
             label="Chat"
             icon={<ChatOutlinedIcon />}
+          />
+        ) : (
+          <p></p>
+        )}
+        {user ? (
+          <BottomNavigationAction
+            component={Link}
+            to="/userprofile"
+            label="Profile"
+            icon={<AccountBoxOutlinedIcon />}
           />
         ) : (
           <p></p>

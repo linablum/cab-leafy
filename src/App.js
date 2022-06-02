@@ -10,6 +10,7 @@ import Logout from "./views/Logout";
 import Chat from "./views/Chat";
 import Register from "./views/Register";
 import Home from "./views/Home";
+import UserProfile from "./views/UserProfile";
 import { PlantsContextProvider } from "./context/plantsContext";
 import { AuthContextProvider } from "./context/authContext";
 import { UserProfileContextProvider } from "./context/favouritesContext";
@@ -28,6 +29,14 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Register />} />
+              <Route
+                path="/userprofile"
+                element={
+                  <ProtectedRoute>
+                    <UserProfile />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/chat"
                 element={
