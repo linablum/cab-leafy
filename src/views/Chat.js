@@ -3,7 +3,6 @@ import { db } from "../utils/config";
 import {
   addDoc,
   collection,
-  getDocs,
   onSnapshot,
   orderBy,
   query,
