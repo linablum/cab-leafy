@@ -1,15 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-import Box from "@mui/material/Box";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import SpaOutlinedIcon from "@mui/icons-material/SpaOutlined";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
-import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
+import { Box, BottomNavigation, BottomNavigationAction } from "@mui/material";
+import {
+  HomeOutlined,
+  PersonOutlineOutlined,
+  SpaOutlined,
+  ChatOutlined,
+  AccountBoxOutlined,
+} from "@mui/icons-material";
 
 export default function Footer() {
   const [value, setValue] = useState(null);
@@ -37,20 +36,20 @@ export default function Footer() {
           component={Link}
           to="/"
           label="Home"
-          icon={<HomeOutlinedIcon />}
+          icon={<HomeOutlined />}
         />
         <BottomNavigationAction
           component={Link}
           to="/details"
           label="Browse Plants"
-          icon={<SpaOutlinedIcon />}
+          icon={<SpaOutlined />}
         />
         {user ? (
           <BottomNavigationAction
             component={Link}
             to="/chat"
             label="Chat"
-            icon={<ChatOutlinedIcon />}
+            icon={<ChatOutlined />}
           />
         ) : (
           <p></p>
@@ -60,7 +59,7 @@ export default function Footer() {
             component={Link}
             to="/userprofile"
             label="Profile"
-            icon={<AccountBoxOutlinedIcon />}
+            icon={<AccountBoxOutlined />}
           />
         ) : (
           <p></p>
@@ -70,14 +69,14 @@ export default function Footer() {
             component={Link}
             to="/logout"
             label="Logout"
-            icon={<PersonOutlineOutlinedIcon />}
+            icon={<PersonOutlineOutlined />}
           />
         ) : (
           <BottomNavigationAction
             component={Link}
             to="/login"
             label="Login"
-            icon={<PersonOutlineOutlinedIcon />}
+            icon={<PersonOutlineOutlined />}
           />
         )}
       </BottomNavigation>

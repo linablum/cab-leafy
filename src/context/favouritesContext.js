@@ -6,7 +6,6 @@ import {
   arrayUnion,
   arrayRemove,
   onSnapshot,
-  collection,
 } from "firebase/firestore";
 import { db } from "../utils/config";
 
@@ -17,15 +16,26 @@ export const UserProfileContextProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
 
   const addFavPlant = async (plant) => {
-    try {
-      const userRef = doc(db, "userProfile", user.uid);
-      await updateDoc(userRef, {
-        favPlants: arrayUnion(plant),
-      });
-      console.log("Plant added to Favorites!");
-      getFavorites();
-    } catch (error) {
-      console.error("Error writing document: ", error);
+    const isFav = favorites.some((e) => {
+      if (e.pid === plant.pid) {
+        return true;
+      }
+      return false;
+    });
+
+    if (!isFav) {
+      try {
+        const userRef = doc(db, "userProfile", user.uid);
+        await updateDoc(userRef, {
+          favPlants: arrayUnion(plant),
+        });
+        console.log("Plant added to Favorites!");
+        getFavorites();
+      } catch (error) {
+        console.error("Error writing document: ", error);
+      }
+    } else {
+      deleteFavPlant(plant);
     }
   };
 

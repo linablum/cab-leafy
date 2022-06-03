@@ -51,7 +51,6 @@ export const AuthContextProvider = (props) => {
   const login = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         console.log("user", user);
         setUser(user);
@@ -68,7 +67,7 @@ export const AuthContextProvider = (props) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
-        const uid = user.uid;
+        // const uid = user.uid;
         setUser(user);
       } else {
         setUser(null);
@@ -82,11 +81,10 @@ export const AuthContextProvider = (props) => {
   const logout = () => {
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
         setUser(null);
+        redirectTo("/");
       })
       .catch((error) => {
-        // An error happened.
         console.log(error);
       });
   };

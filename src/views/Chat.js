@@ -8,6 +8,8 @@ import {
   query,
 } from "firebase/firestore";
 import { AuthContext } from "../context/authContext";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Chat = () => {
   const [messages, setMessages] = useState(null);
@@ -21,7 +23,6 @@ const Chat = () => {
       querySnapshot.forEach((doc) => {
         myMessages.push(doc.data());
       });
-      console.log(myMessages);
       setMessages(myMessages);
     });
   };
@@ -34,13 +35,13 @@ const Chat = () => {
     return new Date(time * 1000).toLocaleString();
   };
   const handleChatMsgChange = (e) => {
-    //   console.log(e.target.value);
     setchatMsg(e.target.value);
   };
   const handleChatMsgSubmit = async () => {
     const messageObj = {
       text: chatMsg,
       author: user.email,
+      userid: user.uid,
       date: new Date(),
     };
     try {
@@ -55,12 +56,22 @@ const Chat = () => {
     <div>
       <h1>Chat</h1>
       {messages &&
-        messages.map((message, index) => {
+        messages.map((message, i) => {
           return (
-            <div key={index} style={{ backgroundColor: "grey" }}>
+            <div key={i} style={{ backgroundColor: "grey" }}>
               <p>{message.text}</p>
               <p>{message.author}</p>
               <p>{messageDate(message.date.seconds)}</p>
+              {user.uid === message.userid ? (
+                <IconButton
+                  aria-label="delete"
+                  //     onClick={() => ()}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              ) : (
+                <p></p>
+              )}
             </div>
           );
         })}

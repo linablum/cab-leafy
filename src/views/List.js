@@ -1,10 +1,16 @@
-import React, { useContext } from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
+import React, { useContext, useState, useEffect } from "react";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+  CardActionArea,
+  CardActions,
+  IconButton,
+  Input,
+} from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Button, CardActionArea, CardActions, IconButton } from "@mui/material";
 import { plants_per_page } from "../utils/constants";
 import { AuthContext } from "../context/authContext";
 import { UserProfileContext } from "../context/favouritesContext";
@@ -12,15 +18,16 @@ import { UserProfileContext } from "../context/favouritesContext";
 const List = ({ plants, page }) => {
   const startIndex = (page - 1) * plants_per_page;
   const { user } = useContext(AuthContext);
-  const { addFavPlant, deleteFavPlant } = useContext(UserProfileContext);
+  const { favorites, addFavPlant, getFavorites } =
+    useContext(UserProfileContext);
 
   const handleAddFavPlant = (plant) => {
     addFavPlant(plant);
   };
 
-  const handleDeleteFavPlant = (plant) => {
-    deleteFavPlant(plant);
-  };
+  useEffect(() => {
+    getFavorites();
+  }, []);
 
   return (
     <div>
@@ -28,6 +35,12 @@ const List = ({ plants, page }) => {
         plants
           .slice(startIndex, startIndex + plants_per_page)
           .map((plant, i) => {
+            const isFav = favorites.some((e) => {
+              if (e.pid === plant.pid) {
+                return true;
+              }
+              return false;
+            });
             return (
               <Card key={i} sx={{ maxWidth: 345 }}>
                 <CardActionArea>
@@ -38,6 +51,7 @@ const List = ({ plants, page }) => {
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       <IconButton
+                        sx={{ color: isFav ? "green" : "lightgreen" }}
                         aria-label="Add to favourites"
                         onClick={
                           user
@@ -47,7 +61,7 @@ const List = ({ plants, page }) => {
                             : () => alert("Please Login first!")
                         }
                       >
-                        <FavoriteIcon sx={{ color: "lightgreen" }} />
+                        <FavoriteIcon />
                       </IconButton>
                     </Typography>
                   </CardContent>

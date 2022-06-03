@@ -21,8 +21,8 @@ const UserProfile = () => {
       {favorites ? (
         favorites.map((fav, i) => {
           return (
-            <div>
-              <p>{favorites[i].display_pid}</p>
+            <div key={i}>
+              <p>{fav.display_pid}</p>
               {/*               <img
                 src={favorites[i]}
                 alt="logo"
@@ -30,7 +30,7 @@ const UserProfile = () => {
               /> */}
               <IconButton
                 aria-label="delete"
-                onClick={() => handleDeleteFavPlant(favorites[i])}
+                onClick={() => handleDeleteFavPlant(fav)}
               >
                 <DeleteIcon />
               </IconButton>
