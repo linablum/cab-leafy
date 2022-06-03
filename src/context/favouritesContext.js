@@ -6,6 +6,7 @@ import {
   arrayUnion,
   arrayRemove,
   onSnapshot,
+  collection,
 } from "firebase/firestore";
 import { db } from "../utils/config";
 
@@ -29,8 +30,9 @@ export const UserProfileContextProvider = ({ children }) => {
   };
 
   const getFavorites = () => {
-    const favs = onSnapshot(doc(db, "userProfile", user.uid), (doc) => {
-      console.log("Current data: ", doc.data());
+    onSnapshot(doc(db, "userProfile", user.uid), (doc) => {
+      console.log("Current data: ", doc.data().favPlants);
+      setFavorites(doc.data().favPlants);
     });
   };
 

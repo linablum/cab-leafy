@@ -38,7 +38,7 @@ const List = ({ plants, page }) => {
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       <IconButton
-                        className="btnFav"
+                        aria-label="Add to favourites"
                         onClick={
                           user
                             ? () => {

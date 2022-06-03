@@ -1,14 +1,8 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/authContext";
 import { UserProfileContext } from "../context/favouritesContext";
-import {
-  doc,
-  updateDoc,
-  arrayUnion,
-  arrayRemove,
-  onSnapshot,
-} from "firebase/firestore";
-import { db } from "../utils/config";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const UserProfile = () => {
   const { favorites, addFavPlant, getFavorites, deleteFavPlant } =
@@ -22,7 +16,32 @@ const UserProfile = () => {
     deleteFavPlant(plant);
   };
 
-  return <div>PROFILE</div>;
+  return (
+    <div>
+      {favorites ? (
+        favorites.map((fav, i) => {
+          return (
+            <div>
+              <p>{favorites[i].display_pid}</p>
+              {/*               <img
+                src={favorites[i]}
+                alt="logo"
+                style={{ width: "120px", height: "120px", margin: "0px" }}
+              /> */}
+              <IconButton
+                aria-label="delete"
+                onClick={() => handleDeleteFavPlant(favorites[i])}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </div>
+          );
+        })
+      ) : (
+        <p>... No Favorites ...</p>
+      )}
+    </div>
+  );
 };
 
 export default UserProfile;
