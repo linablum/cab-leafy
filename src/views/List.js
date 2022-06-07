@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -8,19 +8,18 @@ import {
   CardActionArea,
   CardActions,
   IconButton,
-  getAccordionDetailsUtilityClass,
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import BasicModal from "../components/Modal";
 import { plants_per_page } from "../utils/constants";
 import { AuthContext } from "../context/authContext";
 import { UserProfileContext } from "../context/favouritesContext";
-import { PlantsContext } from "../context/plantsContext";
-import { CleaningServices } from "@mui/icons-material";
+//import { PlantsContext } from "../context/plantsContext";
 
 const List = ({ plants, page }) => {
   const startIndex = (page - 1) * plants_per_page;
   const { user } = useContext(AuthContext);
-  const { details, fetchDetails } = useContext(PlantsContext);
+  // const { details, fetchDetails } = useContext(PlantsContext);
   const { favorites, addFavPlant, getFavorites } =
     useContext(UserProfileContext);
 
@@ -28,17 +27,8 @@ const List = ({ plants, page }) => {
     addFavPlant(plant);
   };
 
-  const handleDetails = (plant) => {
-    fetchDetails(plant);
-    console.log(details);
-  };
-
   useEffect(() => {
     getFavorites();
-  }, []);
-
-  useEffect(() => {
-    fetchDetails();
   }, []);
 
   return (
@@ -79,13 +69,10 @@ const List = ({ plants, page }) => {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button
-                    size="small"
-                    color="primary"
-                    onClick={handleDetails(encodeURI(plant.pid))}
-                  >
-                    Details
-                  </Button>
+                  <BasicModal
+                    plant={encodeURI(plant.pid)}
+                    //         onClick={() => handleDetails(encodeURI(plant.pid))}
+                  />
                 </CardActions>
               </Card>
             );
