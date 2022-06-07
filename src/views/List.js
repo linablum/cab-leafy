@@ -8,15 +8,19 @@ import {
   CardActionArea,
   CardActions,
   IconButton,
+  getAccordionDetailsUtilityClass,
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { plants_per_page } from "../utils/constants";
 import { AuthContext } from "../context/authContext";
 import { UserProfileContext } from "../context/favouritesContext";
+import { PlantsContext } from "../context/plantsContext";
+import { CleaningServices } from "@mui/icons-material";
 
 const List = ({ plants, page }) => {
   const startIndex = (page - 1) * plants_per_page;
   const { user } = useContext(AuthContext);
+  const { details, fetchDetails } = useContext(PlantsContext);
   const { favorites, addFavPlant, getFavorites } =
     useContext(UserProfileContext);
 
@@ -24,10 +28,17 @@ const List = ({ plants, page }) => {
     addFavPlant(plant);
   };
 
-  const handleDetails = (plant) => {};
+  const handleDetails = (plant) => {
+    fetchDetails(plant);
+    console.log(details);
+  };
 
   useEffect(() => {
     getFavorites();
+  }, []);
+
+  useEffect(() => {
+    fetchDetails();
   }, []);
 
   return (
@@ -68,7 +79,11 @@ const List = ({ plants, page }) => {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button size="small" color="primary" onClick={handleDetails}>
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={handleDetails(encodeURI(plant.pid))}
+                  >
                     Details
                   </Button>
                 </CardActions>

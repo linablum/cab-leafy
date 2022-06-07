@@ -3,10 +3,9 @@ import List from "../views/List";
 import Pagination from "./Pagination";
 import { PlantsContext } from "../context/plantsContext";
 import { FormControl, InputLabel, TextField } from "@mui/material";
-//import LoadingButton from "@mui/lab/LoadingButton";
 
 function GetData() {
-  const { output, output2, loading, page, totalPages, setPage, fetchData } =
+  const { output, loading, page, totalPages, setPage, fetchData } =
     useContext(PlantsContext);
 
   const [input, setInput] = useState("Acer");
@@ -27,7 +26,7 @@ function GetData() {
     fetchData(input);
   }, [input]);
 
-  console.log("Output2", output2);
+  console.log(output);
   return (
     <>
       <h1>Leafy</h1>
