@@ -8,7 +8,6 @@ import {
   CardActionArea,
   CardActions,
   IconButton,
-  Input,
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { plants_per_page } from "../utils/constants";
@@ -24,6 +23,8 @@ const List = ({ plants, page }) => {
   const handleAddFavPlant = (plant) => {
     addFavPlant(plant);
   };
+
+  const handleDetails = (plant) => {};
 
   useEffect(() => {
     getFavorites();
@@ -67,7 +68,7 @@ const List = ({ plants, page }) => {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button size="small" color="primary">
+                  <Button size="small" color="primary" onClick={handleDetails}>
                     Details
                   </Button>
                 </CardActions>

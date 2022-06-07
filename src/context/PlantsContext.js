@@ -13,7 +13,7 @@ export const PlantsContextProvider = (props) => {
 
   let api_token = "";
 
-  const fetchData = () => {
+  const fetchData = (searchterm) => {
     const authorize = async () => {
       setLoading(true);
       let formdata = new FormData();
@@ -47,7 +47,9 @@ export const PlantsContextProvider = (props) => {
 
         const res = await fetch(
           cors_url +
-            "https://open.plantbook.io/api/v1/plant/search?alias=a&limit=100&offset=0",
+            "https://open.plantbook.io/api/v1/plant/search?alias=" +
+            searchterm +
+            "&limit=100&offset=0",
           requestOptions
         ).catch(console.log("error"));
         const data = await res.json();
@@ -56,7 +58,8 @@ export const PlantsContextProvider = (props) => {
 
         const res2 = await fetch(
           cors_url +
-            "https://open.plantbook.io//api/v1/plant/detail/acer%20pseudoplatanus/",
+            "https://open.plantbook.io//api/v1/plant/detail/" +
+            "acer%20pseudoplatanus/",
           requestOptions
         ).catch(console.log("error"));
         setLoading(false);
@@ -77,27 +80,3 @@ export const PlantsContextProvider = (props) => {
     </PlantsContext.Provider>
   );
 };
-
-/* 
-        const allArray = [];
-        const resDetails = await Promise.all(
-          urls.map((output.alias) =>
-          fetch(cors_url +
-            "https://open.plantbook.io//api/v1/plant/detail/${output.alias}",
-          requestOptions)
-        ).catch(console.log("error"));
-        const details = await res.json();
-        console.log(details); */
-
-/*       async function fetchCharacters() {
-  try {
-    const allArray = [];
-    const data = await Promise.all(
-      urls.map((url) =>
-        fetch(url)
-          .then((res) => res.json())
-          .then((res) => {
-            allArray.push(...res.data.results);
-          })
-      )
-    ); */
