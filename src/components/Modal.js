@@ -21,11 +21,10 @@ export default function BasicModal(plant) {
   const [open, setOpen] = useState(false);
   const handleOpen = (plant) => {
     setOpen(true);
-    fetchDetails(plant);
+    //  fetchDetails(plant);
   };
   const handleClose = () => setOpen(false);
 
-  console.log(plant);
   // const handleDetails = (plant) => {
   //  fetchDetails(plant);
   //};
@@ -51,10 +50,36 @@ export default function BasicModal(plant) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {details && <p>{details.pid}</p>}
+            {details && (
+              <>
+                <p>Name: {details.display.pid}</p>
+            )}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            {details && (
+              <>
+                <p>
+                  Brightness:
+                  {details.min_light_lux} - {details.max_light_lux} lx
+                </p>
+                <p>
+                  Temperture:
+                  {details.min_temp} - {details.max_temp} °C
+                </p>
+                <p>
+                  Humidity:
+                  {details.min_env_humid} - {details.max_env_humid} %
+                </p>
+                <p>
+                  Soil moisture:
+                  {details.min_soil_moist} - {details.max_soil_moist} %
+                </p>
+                <p>
+                  Soil salinity:
+                  {details.min_soil_ec} - {details.max_soil_ec} µS/cm
+                </p>
+                <img src={details.image_url}></img>
+              </>
           </Typography>
         </Box>
       </Modal>

@@ -34,7 +34,7 @@ function GetData() {
         <InputLabel></InputLabel>
         <TextField
           label="Search Plants"
-          color="secondary"
+          color="success"
           focused
           value={input}
           onChange={handleChange}
