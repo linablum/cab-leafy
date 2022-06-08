@@ -75,7 +75,12 @@ export default function BasicModal({ plant }) {
                     Soil salinity: {details.min_soil_ec} - {details.max_soil_ec}{" "}
                     µS/cm
                   </p>
-                  <img src={details.image_url} width={250} height={250}></img>
+                  <img
+                    src={details.image_url}
+                    width={250}
+                    height={250}
+                    alt="Plant"
+                  ></img>
                 </>
               )}
             </Typography>

@@ -1,11 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../context/authContext";
+import React, { useContext, useEffect } from "react";
 import { UserProfileContext } from "../context/favouritesContext";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const UserProfile = () => {
-  const { favorites, addFavPlant, getFavorites, deleteFavPlant } =
+  const { favorites, getFavorites, deleteFavPlant } =
     useContext(UserProfileContext);
 
   useEffect(() => {
