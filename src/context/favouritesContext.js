@@ -29,7 +29,6 @@ export const UserProfileContextProvider = ({ children }) => {
         await updateDoc(userRef, {
           favPlants: arrayUnion(plant),
         });
-        console.log("Plant added to Favorites!");
         getFavorites();
       } catch (error) {
         console.error("Error writing document: ", error);
@@ -42,7 +41,6 @@ export const UserProfileContextProvider = ({ children }) => {
   const getFavorites = () => {
     if (user) {
       onSnapshot(doc(db, "userProfile", user.uid), (doc) => {
-        console.log("Current data: ", doc.data().favPlants);
         setFavorites(doc.data().favPlants);
       });
     }
@@ -54,7 +52,6 @@ export const UserProfileContextProvider = ({ children }) => {
       await updateDoc(userRef, {
         favPlants: arrayRemove(plant),
       });
-      console.log("Plant removed from Favorites!");
       getFavorites();
     } catch (error) {
       console.error("Error writing document: ", error);

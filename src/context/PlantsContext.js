@@ -8,7 +8,6 @@ export const PlantsContextProvider = (props) => {
   const [output, setOutput] = useState();
   const [details, setDetails] = useState(null);
   const [loading, setLoading] = useState();
-  const [modalLoading, setModalLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [open, setOpen] = useState(false);
@@ -70,7 +69,6 @@ export const PlantsContextProvider = (props) => {
   const fetchDetails = (plant) => {
     handleOpen();
     const authorize = async () => {
-      setModalLoading(true);
       let formdata = new FormData();
       formdata.append("grant_type", "client_credentials");
       formdata.append("client_id", configData.client_id);
@@ -105,12 +103,10 @@ export const PlantsContextProvider = (props) => {
             "https://open.plantbook.io//api/v1/plant/detail/" +
             plant +
             "/",
-          //            "acer%20pseudoplatanus/",
           requestOptions
         ).catch(console.log("error"));
 
         const data2 = await res2.json();
-        console.log("data2", data2);
         setDetails(data2);
       };
       getObject();
@@ -130,7 +126,6 @@ export const PlantsContextProvider = (props) => {
         setPage,
         fetchData,
         fetchDetails,
-        modalLoading,
         open,
         setOpen,
       }}

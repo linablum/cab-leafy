@@ -18,7 +18,6 @@ import { UserProfileContext } from "../context/favouritesContext";
 const List = ({ plants, page }) => {
   const startIndex = (page - 1) * plants_per_page;
   const { user } = useContext(AuthContext);
-  // const { details, fetchDetails } = useContext(PlantsContext);
   const { favorites, addFavPlant, getFavorites } =
     useContext(UserProfileContext);
 
@@ -68,10 +67,7 @@ const List = ({ plants, page }) => {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <BasicModal
-                    plant={encodeURI(plant.pid)}
-                    //         onClick={() => handleDetails(encodeURI(plant.pid))}
-                  />
+                  <BasicModal plant={encodeURI(plant.pid)} />
                 </CardActions>
               </Card>
             );

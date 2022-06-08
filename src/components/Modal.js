@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 import {
   Box,
   Button,
@@ -8,7 +8,6 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { PlantsContext } from "../context/plantsContext";
-import { CurrencyExchangeOutlined } from "@mui/icons-material";
 
 const style = {
   position: "absolute",
@@ -23,8 +22,7 @@ const style = {
 };
 
 export default function BasicModal({ plant }) {
-  const { details, fetchDetails, modalLoading, open, setOpen } =
-    useContext(PlantsContext);
+  const { details, fetchDetails, open, setOpen } = useContext(PlantsContext);
 
   const handleClose = () => setOpen(false);
 
@@ -43,7 +41,9 @@ export default function BasicModal({ plant }) {
         sx={{ backgroundColor: "white" }}
       >
         {!details ? (
-          <CircularProgress color="success"></CircularProgress>
+          <Box sx={style}>
+            <CircularProgress color="success" />
+          </Box>
         ) : (
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
