@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { Box, BottomNavigation, BottomNavigationAction } from "@mui/material";
+import MuiBottomNavigationAction from "@mui/material/BottomNavigationAction";
+import { styled } from "@mui/material/styles";
 import {
   HomeOutlined,
   PersonOutlineOutlined,
@@ -13,6 +15,13 @@ import {
 export default function Footer() {
   const [value, setValue] = useState(null);
   const { user } = useContext(AuthContext);
+
+  const BottomNavigationAction = styled(MuiBottomNavigationAction)(`
+
+  &.Mui-selected {
+    color: seagreen;
+  }
+`);
 
   return (
     <Box

@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./views/Header";
 import Footer from "./views/Footer";
-import Details from "./views/Details";
 import GetData from "./components/GetData";
 import Login from "./views/Login";
 import Logout from "./views/Logout";
