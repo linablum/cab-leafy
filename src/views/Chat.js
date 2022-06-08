@@ -62,10 +62,12 @@ const Chat = () => {
               <p>{message.text}</p>
               <p>{message.author}</p>
               <p>{messageDate(message.date.seconds)}</p>
+              {/* {NOTE Since you are not showing anything (an empty p) if the condition is false, you could've used a conditional rendering &&} */}
               {user.uid === message.userid ? (
                 <IconButton
                   aria-label="delete"
                   //     onClick={() => ()}
+                  //NOTE nice idea, just needs some implementation ;)
                 >
                   <DeleteIcon />
                 </IconButton>

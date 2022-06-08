@@ -45,8 +45,9 @@ export const UserProfileContextProvider = ({ children }) => {
       });
     }
   };
-
+  //NOTE An option to avoid checking the favorites while mapping in your List component, would be to create a function here to check if the ID is inside your favorites, pass the function throudh the provider to the component, and from there, return the ID or a Boolean
   const deleteFavPlant = async (plant) => {
+    // NOTE in some components you use .then(), here async/await with Try&Catch, better to keep some consistency with that.
     try {
       const userRef = doc(db, "userProfile", user.uid);
       await updateDoc(userRef, {
