@@ -20,7 +20,7 @@ function GetData() {
 
   useEffect(() => {
     fetchData(input);
-  }, []);
+  }, []); // NOTE not necessary , the second useEffect is making this one also run.
 
   useEffect(() => {
     fetchData(input);
@@ -32,6 +32,7 @@ function GetData() {
       <h1>Leafy</h1>
       <FormControl>
         <InputLabel></InputLabel>
+        {/* {NOTE wouldn´t it be better an autoclosing tag?  Besides, we don't understand the function of it} */}
         <TextField
           label="Search Plants"
           color="success"

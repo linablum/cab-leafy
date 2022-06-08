@@ -31,6 +31,7 @@ const List = ({ plants, page }) => {
 
   return (
     <div>
+      {/* {NOTE had you created a component for a single plant, you could've avided having to map here to extract the plant ID, since that single plant would contain it} */}
       {plants ? (
         plants
           .slice(startIndex, startIndex + plants_per_page)

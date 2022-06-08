@@ -25,6 +25,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/details" element={<GetData />} />
+              {/* {NOTE instead of having a modal to show details, you could've used the URL parameters, from React Router, with a relative URL} */}
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Register />} />

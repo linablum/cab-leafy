@@ -31,6 +31,7 @@ export const PlantsContextProvider = (props) => {
         cors_url + "https://open.plantbook.io/api/v1/token/",
         requestOptions
       ).catch(console.log("error"));
+      //NOTE async/await with a .catch  is weird.
       const data = await res.json();
       api_token = data.access_token;
       console.log("Successful Authorization. Token: " + api_token);
@@ -62,12 +63,14 @@ export const PlantsContextProvider = (props) => {
 
     authorize();
   };
+  // NOTE to keep the component tidier, you could've  created getObject and authorize as separated functions and call them from a controller.
   const handleOpen = () => {
     setOpen(true);
     //  fetchDetails(plant);
   };
   const fetchDetails = (plant) => {
     handleOpen();
+    //NOTE if authorize were in the global scope, you could've used it for both functions.
     const authorize = async () => {
       let formdata = new FormData();
       formdata.append("grant_type", "client_credentials");
