@@ -58,7 +58,7 @@ const Chat = () => {
       {messages &&
         messages.map((message, i) => {
           return (
-            <div key={i} style={{ backgroundColor: "grey" }}>
+            <div key={i} style={{ backgroundColor: "honeydew" }}>
               <p>{message.text}</p>
               <p>{message.author}</p>
               <p>{messageDate(message.date.seconds)}</p>

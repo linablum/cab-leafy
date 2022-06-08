@@ -40,10 +40,12 @@ export const UserProfileContextProvider = ({ children }) => {
   };
 
   const getFavorites = () => {
-    onSnapshot(doc(db, "userProfile", user.uid), (doc) => {
-      console.log("Current data: ", doc.data().favPlants);
-      setFavorites(doc.data().favPlants);
-    });
+    if (user) {
+      onSnapshot(doc(db, "userProfile", user.uid), (doc) => {
+        console.log("Current data: ", doc.data().favPlants);
+        setFavorites(doc.data().favPlants);
+      });
+    }
   };
 
   const deleteFavPlant = async (plant) => {

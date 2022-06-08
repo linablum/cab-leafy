@@ -16,18 +16,19 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal(plant) {
-  const { details, fetchDetails } = useContext(PlantsContext);
-  const [open, setOpen] = useState(false);
-  const handleOpen = (plant) => {
+export default function BasicModal({ plant }) {
+  const { details, fetchDetails, modalLoading, open, setOpen } =
+    useContext(PlantsContext);
+  /*  const [open, setOpen] = useState(false); */
+  /* const handleOpen = () => {
     setOpen(true);
     //  fetchDetails(plant);
-  };
+  }; */
   const handleClose = () => setOpen(false);
 
-  // const handleDetails = (plant) => {
-  //  fetchDetails(plant);
-  //};
+  const handleDetails = (plant) => {
+    fetchDetails(plant);
+  };
 
   /*   useEffect(
     (plant) => {
@@ -38,50 +39,55 @@ export default function BasicModal(plant) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>
-        {/*  <Button onClick={(handleOpen, () => handleDetails(plant))}> */}
-        Details
-      </Button>
+      {/*   <Button onClick={handleOpen}> */}
+      <Button onClick={() => handleDetails(plant)}>Details</Button>
+
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {details && (
-              <>
-                <p>Name: {details.display.pid}</p>
-            )}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {details && (
-              <>
-                <p>
-                  Brightness:
-                  {details.min_light_lux} - {details.max_light_lux} lx
-                </p>
-                <p>
-                  Temperture:
-                  {details.min_temp} - {details.max_temp} °C
-                </p>
-                <p>
-                  Humidity:
-                  {details.min_env_humid} - {details.max_env_humid} %
-                </p>
-                <p>
-                  Soil moisture:
-                  {details.min_soil_moist} - {details.max_soil_moist} %
-                </p>
-                <p>
-                  Soil salinity:
-                  {details.min_soil_ec} - {details.max_soil_ec} µS/cm
-                </p>
-                <img src={details.image_url}></img>
-              </>
-          </Typography>
-        </Box>
+        {!details ? (
+          <p>loading</p>
+        ) : (
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              {details && (
+                <>
+                  <p>Name: {details.display_pid}</p>
+                </>
+              )}
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              {details && (
+                <>
+                  <p>
+                    Brightness:
+                    {details.min_light_lux} - {details.max_light_lux} lx
+                  </p>
+                  <p>
+                    Temperture:
+                    {details.min_temp} - {details.max_temp} °C
+                  </p>
+                  <p>
+                    Humidity:
+                    {details.min_env_humid} - {details.max_env_humid} %
+                  </p>
+                  <p>
+                    Soil moisture:
+                    {details.min_soil_moist} - {details.max_soil_moist} %
+                  </p>
+                  <p>
+                    Soil salinity:
+                    {details.min_soil_ec} - {details.max_soil_ec} µS/cm
+                  </p>
+                  <img src={details.image_url}></img>
+                </>
+              )}
+            </Typography>
+          </Box>
+        )}
       </Modal>
     </div>
   );

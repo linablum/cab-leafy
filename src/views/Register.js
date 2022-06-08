@@ -23,7 +23,7 @@ function Register() {
   return (
     <div>
       <h2>Register</h2>
-      <label htmlFor="email">email</label>
+      <label htmlFor="email">Email</label>
       <input
         type="email"
         name="email"
@@ -31,7 +31,7 @@ function Register() {
         onChange={handleEmailChange}
         value={email}
       />
-      <label htmlFor="password">password</label>
+      <label htmlFor="password">Password</label>
       <input
         type="password"
         name="password"
@@ -39,8 +39,10 @@ function Register() {
         onChange={handlePassChange}
         value={password}
       />
-      <button onClick={handleRegister}>register</button>
-      <Link to="/login">already an user? go to Login</Link>
+      <button onClick={handleRegister}>Register</button>
+      <p>
+        <Link to="/login">Already a user? Go to Login</Link>
+      </p>
     </div>
   );
 }

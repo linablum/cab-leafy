@@ -6,11 +6,12 @@ export const PlantsContext = createContext();
 
 export const PlantsContextProvider = (props) => {
   const [output, setOutput] = useState();
-  const [details, setDetails] = useState();
+  const [details, setDetails] = useState(null);
   const [loading, setLoading] = useState();
+  const [modalLoading, setModalLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-
+  const [open, setOpen] = useState(false);
   let api_token = "";
 
   const fetchData = (searchterm) => {
@@ -62,10 +63,14 @@ export const PlantsContextProvider = (props) => {
 
     authorize();
   };
-
+  const handleOpen = () => {
+    setOpen(true);
+    //  fetchDetails(plant);
+  };
   const fetchDetails = (plant) => {
+    handleOpen();
     const authorize = async () => {
-      setLoading(true);
+      setModalLoading(true);
       let formdata = new FormData();
       formdata.append("grant_type", "client_credentials");
       formdata.append("client_id", configData.client_id);
@@ -103,8 +108,9 @@ export const PlantsContextProvider = (props) => {
           //            "acer%20pseudoplatanus/",
           requestOptions
         ).catch(console.log("error"));
-        setLoading(false);
+
         const data2 = await res2.json();
+        console.log("data2", data2);
         setDetails(data2);
       };
       getObject();
@@ -124,6 +130,9 @@ export const PlantsContextProvider = (props) => {
         setPage,
         fetchData,
         fetchDetails,
+        modalLoading,
+        open,
+        setOpen,
       }}
     >
       {props.children}

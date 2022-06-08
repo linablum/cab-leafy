@@ -23,7 +23,7 @@ function Login() {
   return (
     <div>
       <h2>Login</h2>
-      <label htmlFor="email">email</label>
+      <label htmlFor="email">Email</label>
       <input
         type="email"
         name="email"
@@ -31,7 +31,7 @@ function Login() {
         onChange={handleEmailChange}
         value={email}
       />
-      <label htmlFor="password">password</label>
+      <label htmlFor="password">Password</label>
       <input
         type="password"
         name="password"
@@ -40,7 +40,9 @@ function Login() {
         value={password}
       />
       <button onClick={handleLogin}>Login</button>
-      <Link to="/register">not an user? go to Register</Link>
+      <p>
+        <Link to="/register">Not a user? Go to Register</Link>
+      </p>
     </div>
   );
 }
