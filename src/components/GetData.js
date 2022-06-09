@@ -30,16 +30,18 @@ function GetData() {
   return (
     <>
       <h1>Leafy</h1>
-      <FormControl>
-        <InputLabel></InputLabel>
-        <TextField
-          label="Search Plants"
-          color="success"
-          focused
-          value={input}
-          onChange={handleChange}
-        />
-      </FormControl>
+      <p>
+        <FormControl>
+          <InputLabel></InputLabel>
+          <TextField
+            label="Search Plants"
+            color="success"
+            focused
+            value={input}
+            onChange={handleChange}
+          />
+        </FormControl>
+      </p>
       {loading ? (
         <p>Loading...</p>
       ) : (

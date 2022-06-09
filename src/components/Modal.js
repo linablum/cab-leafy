@@ -32,7 +32,15 @@ export default function BasicModal({ plant }) {
 
   return (
     <div>
-      <Button onClick={() => handleDetails(plant)}>Details</Button>
+      <Button
+        onClick={() => handleDetails(plant)}
+        sx={{
+          color: "seagreen",
+          fontSize: "14px",
+        }}
+      >
+        Details
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -77,8 +85,8 @@ export default function BasicModal({ plant }) {
                   </p>
                   <img
                     src={details.image_url}
-                    width={250}
-                    height={250}
+                    width={200}
+                    height={200}
                     alt="Plant"
                   ></img>
                 </>

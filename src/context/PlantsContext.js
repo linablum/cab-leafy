@@ -64,7 +64,6 @@ export const PlantsContextProvider = (props) => {
   };
   const handleOpen = () => {
     setOpen(true);
-    //  fetchDetails(plant);
   };
   const fetchDetails = (plant) => {
     handleOpen();

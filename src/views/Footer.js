@@ -17,7 +17,6 @@ export default function Footer() {
   const { user } = useContext(AuthContext);
 
   const BottomNavigationAction = styled(MuiBottomNavigationAction)(`
-
   &.Mui-selected {
     color: seagreen;
   }
@@ -50,7 +49,7 @@ export default function Footer() {
         <BottomNavigationAction
           component={Link}
           to="/details"
-          label="Browse Plants"
+          label="Plants"
           icon={<SpaOutlined />}
         />
         {user ? (
