@@ -46,7 +46,7 @@ How to get a copy and locally run it:
 
 1. Clone the repo
    ```bash
-   git clone https://github.com/TechLabs-Berlin/wt21-schedule-n.git
+   git clone https://github.com/linablum/cab-leafy
    ```
 
  #### React app
