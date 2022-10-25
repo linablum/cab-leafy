@@ -1,5 +1,5 @@
 # Leafy
-> 
+> Leafy is an application to display and exchange information about indoor plants. It is part of Module 1 Project 3 of Code Academy Berlin Web Developement Course. 
 
 
 ## Table of Contents
@@ -67,3 +67,5 @@ Room for improvement:
 
 
 ## Contact
+
+📫 How to reach me - ang.blumenthal@gmail.com
